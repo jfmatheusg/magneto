@@ -1,0 +1,9 @@
+version = 0.1
+[default]
+[default.deploy]
+[default.deploy.parameters]
+stack_name = "magneto-app"
+s3_bucket = "aws-sam-cli-managed-default-samclisourcebucket-101zyz9q3qybi"
+s3_prefix = "magneto-app"
+region = "us-east-1"
+capabilities = "CAPABILITY_IAM"
