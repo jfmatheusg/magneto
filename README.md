@@ -56,4 +56,10 @@ pip install -r requirements.txt
 
 ## Arquitectura de solución
 
-[[https://github.com/jfmatheusg/magneto/blob/main/wiki/MercadoLibre.png]]
+![Arquitectura](https://github.com/jfmatheusg/magneto/blob/main/wiki/MercadoLibre.png?raw=true)
+
+Se decide utilizar solo servicios serverlesss de AWS para poder responder de manera rápida, costo-eficiente y sin requerimientos de administración a las variaciones de carga mencionada en el challenge (desde 100 hasta 1 millon de peticiones concurrentes).
+
+Para el challenge se deja sin capacidad aprovisionada (On-Demand) para la tabla de DynamoDB pero para un escenario de implementación realista se podría configurar una capacidad mínima de lecturas/escrituras para atender las 100 peticiones concurrentes con un autoescalamiento de tal capacidad para poder llegar a atender el millón de peticiones.
+
+Se elige utilizar python como lenguaje de programación por su bajo tiempo de cold start (ideal para el caso de autoescalamiento de funciones lambda) y por sus librerías de álgebra lineal para el manejo de la matriz de ADN
