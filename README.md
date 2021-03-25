@@ -56,4 +56,4 @@ pip install -r requirements.txt
 
 ## Arquitectura de solución
 
-[[/wiki/MercadoLibre.png]]
+[[https://github.com/jfmatheusg/magneto/blob/main/wiki/MercadoLibre.png]]
