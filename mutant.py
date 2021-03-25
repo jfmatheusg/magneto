@@ -68,7 +68,7 @@ normalDna = ["ATGCGA","CAGTGC","TTATTT","AGACGG","GCGTCA","TCACTG"]
 print('isMutant?: ', isMutant(mutantDna))
 print('isMutant?: ', isMutant(normalDna))
 
-randomDna=dnaGenerator(10000,True)
+randomDna=dnaGenerator(100,True)
 ticInit=timeit.default_timer()
 print('isMutant? (dnaGenerator): ',isMutant(randomDna))
 print('Total main time: ',(timeit.default_timer()-ticInit)*1000,'ms')
