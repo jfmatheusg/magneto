@@ -8,4 +8,11 @@ source_md5 = ""
 packagetype = "Zip"
 functions = ["MutantFunction"]
 
+[function_build_definitions.1cee31c6-6177-4495-b4f0-ca3195d0b9e4]
+codeuri = "stats/"
+runtime = "python3.8"
+source_md5 = ""
+packagetype = "Zip"
+functions = ["StatsFunction"]
+
 [layer_build_definitions]

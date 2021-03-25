@@ -17,12 +17,43 @@ Resources:
       CodeUri: mutant/
       Handler: app.lambda_handler
       Runtime: python3.8
+      Policies:
+        - AmazonDynamoDBFullAccess
       Events:
         Mutant:
           Type: Api # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
           Properties:
             Path: /mutant
             Method: post
+
+  StatsFunction:
+    Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
+    Properties:
+      CodeUri: stats/
+      Handler: app.lambda_handler
+      Runtime: python3.8
+      Policies:
+        - AmazonDynamoDBFullAccess
+      Events:
+        Mutant:
+          Type: Api # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
+          Properties:
+            Path: /stats
+            Method: get
+
+  MutantsDBTable:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      AttributeDefinitions:
+        - AttributeName: dna
+          AttributeType: S
+      KeySchema:
+        - AttributeName: dna
+          KeyType: HASH
+      BillingMode: PAY_PER_REQUEST
+      StreamSpecification:
+        StreamViewType: NEW_IMAGE
+      TableName: MutantsDBTable
 
 Outputs:
   # ServerlessRestApi is an implicit API created out of Events key under Serverless::Function
@@ -37,3 +68,12 @@ Outputs:
   MutantFunctionIamRole:
     Description: "Implicit IAM Role created for Mutant function"
     Value: !GetAtt MutantFunctionRole.Arn
+  StatsApi:
+    Description: "API Gateway endpoint URL for Prod stage for Stats function"
+    Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/stats/"
+  StatsFunction:
+    Description: "Stats Lambda Function ARN"
+    Value: !GetAtt StatsFunction.Arn
+  StatsFunctionIamRole:
+    Description: "Implicit IAM Role created for Stats function"
+    Value: !GetAtt StatsFunctionRole.Arn

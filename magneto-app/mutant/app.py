@@ -1,5 +1,10 @@
 import json
 import numpy as np
+import boto3
+from Crypto.Hash import SHA256
+
+dynamo = boto3.resource('dynamodb')
+table = dynamo.Table('MutantsDBTable')
 
 def checkDna(dnaStrip):
     mutantChains = ["AAAA","CCCC","GGGG","TTTT"]
@@ -43,7 +48,16 @@ def isMutant(dna):
 def lambda_handler(event, context):
     body = json.loads(event['body'])
     dna = body['dna']
-    if isMutant(dna):
+    mutant = isMutant(dna)
+    hash = SHA256.new()
+    hash.update(("".join(dna)).encode('utf-8'))
+    dnaKey=hash.hexdigest()
+    table.put_item(
+        Item={
+            "dna": dnaKey,
+            "isMutant": 1 if mutant else 0
+            })
+    if mutant:
         return {
             "statusCode": 200,
             "body": json.dumps({
