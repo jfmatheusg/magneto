@@ -2,7 +2,6 @@
 Encuentre mutantes a partir de las cadenas de ADN
 
 ## ¿Cómo consumir las APIs?
-<br>
 
 ### Mutant
 
@@ -19,7 +18,6 @@ HttpCode|Message
 --------|--------
 200|Mutant!
 403|Forbidden
-<br>
 
 ### Stats
 Endpoint: https://tsgdgidxc1.execute-api.us-east-1.amazonaws.com/Prod/stats
@@ -30,7 +28,6 @@ Responses:
 HttpCode|Message
 --------|--------
 200|```{"count_mutant_dna":40,"count_human_dna":100, "ratio":0.4}```
-<br>
 
 ## ¿Cómo desplegar la solución?
 
