@@ -34,6 +34,7 @@ HttpCode|Message
 ### Pre-requisitos
 
 - AWS SAM
+- Python 3.8
 - Cuenta en AWS
 - Configuración de Access Key ID/Secret de AWS
 
@@ -48,9 +49,20 @@ sam deploy
 
 ## ¿Cómo ejecutar las pruebas?
 
-Ejecutar el siguiente comando:
+### Pre-requisitos
+
+- Python 3.8
+- pipenv
+- Instalar las dependencias del proyecto
+  ```
+  pipenv install
+  ```
+
+Ejecutar los siguientes comandos:
 
 ```
+pipenv shell
+
 coverage run -m pytest ./magneto-app/tests/unit
 ```
 
