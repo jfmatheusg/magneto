@@ -1,0 +1,6 @@
+[run]
+omit =
+    */tests/*
+    */.local/*
+    magneto-app/mutant/__init__.py
+    magneto-app/stats/__init__.py

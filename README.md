@@ -31,6 +31,12 @@ HttpCode|Message
 
 ## ¿Cómo desplegar la solución?
 
+### Pre-requisitos
+
+- AWS SAM
+- Cuenta en AWS
+- Configuración de Access Key ID/Secret de AWS
+
 En la ruta ```magneto-app``` realizar el build de los componentes:
 ```
 sam build
@@ -42,13 +48,23 @@ sam deploy
 
 ## ¿Cómo ejecutar las pruebas?
 
+Ejecutar el siguiente comando:
+
 ```
-coverage run -m pytest
+coverage run -m pytest ./magneto-app/tests/unit
 ```
 
-Si encuentra algun error de dependencias de python en su ambiente local, no olvide instalarlas:
+### Reporte de Cobertura de Pruebas
+
 ```
-pip install -r requirements.txt
+coverage report
+
+Name                        Stmts   Miss  Cover
+-----------------------------------------------
+magneto-app/mutant/app.py      48      3    94%
+magneto-app/stats/app.py       11      0   100%
+-----------------------------------------------
+TOTAL                          59      3    95%
 ```
 
 ## Arquitectura de solución
